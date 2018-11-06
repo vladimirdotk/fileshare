@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  
+  build-linux:
+    image: golang:1.11-alpine 
+    volumes:
+      - .:/go/src/github.com/vladimirdotk/fileshare
+    working_dir: /go/src/github.com/vladimirdotk/fileshare
+    command: go build -v -ldflags="-s -w" -o fileshare.bin
+  
+  build-mac:
+    image: golang:1.11-alpine
+    volumes:
+      - .:/go/src/github.com/vladimirdotk/fileshare
+    working_dir: /go/src/github.com/vladimirdotk/fileshare
+    command: env GOOS=darwin go build -v -ldflags="-s -w" -o fileshare.bin
